@@ -104,7 +104,7 @@ static void check_and_cede_processor(void)
 	 * were soft-disabled
 	 */
 	hard_irq_disable();
-	if (get_paca()->irq_happened == 0)
+	if (!lazy_irq_pending())
 		cede_processor();
 #ifdef CONFIG_TRACE_IRQFLAGS
 		/* Ensure that H_CEDE returns with IRQs on */
