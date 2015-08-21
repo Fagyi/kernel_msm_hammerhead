@@ -30,9 +30,9 @@ obj-$(CONFIG_ARCH_OMAP4)		+= omap4-common.o omap-wakeupgen.o \
 					   sleep44xx.o
 
 plus_sec := $(call as-instr,.arch_extension sec,+sec)
-AFLAGS_omap-headsmp.o			:=-Wa,-march=armv7-a$(plus_sec)
-AFLAGS_omap-smc.o			:=-Wa,-march=armv7-a$(plus_sec)
-AFLAGS_sleep44xx.o			:=-Wa,-march=armv7-a$(plus_sec)
+AFLAGS_omap-headsmp.o			:=-Wa,-mcpu=cortex-a15 -mtune=cortex-a15$(plus_sec)
+AFLAGS_omap-smc.o			:=-Wa,-mcpu=cortex-a15 -mtune=cortex-a15$(plus_sec)
+AFLAGS_sleep44xx.o			:=-Wa,-mcpu=cortex-a15 -mtune=cortex-a15$(plus_sec)
 
 # Functions loaded to SRAM
 obj-$(CONFIG_SOC_OMAP2420)		+= sram242x.o
