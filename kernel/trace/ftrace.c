@@ -217,17 +217,6 @@ static void update_global_ops(void)
 	global_ops.func = func;
 }
 
-static void ftrace_sync(struct work_struct *work)
-{
-	/*
-	 * This function is just a stub to implement a hard force
-	 * of synchronize_sched(). This requires synchronizing
-	 * tasks even in userspace and idle.
-	 *
-	 * Yes, function tracing is rude.
-	 */
-}
-
 #ifdef CONFIG_FUNCTION_GRAPH_TRACER
 static void update_function_graph_func(void);
 #else
@@ -1924,6 +1913,17 @@ static int global_start_up;
 static void control_ops_free(struct ftrace_ops *ops)
 {
 	free_percpu(ops->disabled);
+}
+
+static void ftrace_sync(struct work_struct *work)
+{
+	/*
+	 * This function is just a stub to implement a hard force
+	 * of synchronize_sched(). This requires synchronizing
+	 * tasks even in userspace and idle.
+	 *
+	 * Yes, function tracing is rude.
+	 */
 }
 
 static void ftrace_startup_enable(int command)
