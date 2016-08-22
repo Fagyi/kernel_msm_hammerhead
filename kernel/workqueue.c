@@ -42,8 +42,8 @@
 #include <linux/lockdep.h>
 #include <linux/idr.h>
 #include <linux/bug.h>
-#include <linux/moduleparam.h>
 #include <linux/hashtable.h>
+#include <linux/moduleparam.h>
 
 #include "workqueue_internal.h"
 
@@ -3138,6 +3138,10 @@ struct workqueue_struct *__alloc_workqueue_key(const char *fmt,
 	vsnprintf(wq->name, namelen, fmt, args1);
 	va_end(args);
 	va_end(args1);
+
+	/* see the comment above the definition of WQ_POWER_EFFICIENT */
+	if ((flags & WQ_POWER_EFFICIENT) && wq_power_efficient)
+		flags |= WQ_UNBOUND;
 
 	/*
 	 * Workqueues which may be used during memory reclaim should
