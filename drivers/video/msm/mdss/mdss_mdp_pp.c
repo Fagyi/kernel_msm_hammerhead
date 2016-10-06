@@ -2019,8 +2019,7 @@ static int pp_gm_has_invalid_lut_size(struct mdp_gamut_cfg_data *config)
 	return 0;
 }
 
-int mdss_mdp_gamut_config(struct mdss_mdp_ctl *ctl,
-					struct mdp_gamut_cfg_data *config,
+int mdss_mdp_gamut_config(struct mdp_gamut_cfg_data *config,
 					u32 *copyback)
 {
 	int i, j, ret = 0;
