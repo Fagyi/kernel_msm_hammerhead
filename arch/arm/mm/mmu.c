@@ -1238,7 +1238,7 @@ static void __init devicemaps_init(struct machine_desc *mdesc)
 #else
 	map.type = MT_LOW_VECTORS;
 #endif
-	create_mapping(&map, false);
+	create_mapping(&map);
 	if (!vectors_high()) {
 		map.virtual = 0;
 		map.length = PAGE_SIZE * 2;
@@ -1251,7 +1251,7 @@ static void __init devicemaps_init(struct machine_desc *mdesc)
 	map.virtual = 0xffff0000 + PAGE_SIZE;
 	map.length = PAGE_SIZE;
 	map.type = MT_LOW_VECTORS;
-	create_mapping(&map, false);
+	create_mapping(&map);
 
 	/*
 	 * Ask the machine support to map in the statically mapped devices.
